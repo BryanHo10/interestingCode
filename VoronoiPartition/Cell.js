@@ -1,32 +1,32 @@
-function Particle(x,y,r){
+function Particle(x,y,hu){
     
     this.pos=createVector(x,y);
-    this.vel=createVector(0,0);
-    this.acc=createVector(0,0);
-    this.r=r;
-    
+    this.r=2;
+    this.hu=hu;
+    colorMode(HSB);
     this.show = function(){
-        stroke(151,51);
+        stroke(0);
+        fill(0);
         ellipse(this.pos.x,this.pos.y,this.r,this.r);
+        //createBorder()
     }
-    this.update=function(){
-
-        this.vel.add(this.acc);
-        this.pos.add(this.vel);
-        this.acc.mult(0);
-        
-    }
+    
     this.getRadius=function()
     {
         return this.r;
     }
-    this.setRadius=function(nrad)
+    
+    this.getHue=function()
     {
-        this.r=nrad;
+        return this.hu;    
     }
+    
+    this.findDistance=function(x,y)
+    {
 
-    this.applyForce=function(force){
-        
-        this.acc.add(force);
+        var d=dist(x,y,this.pos.x,this.pos.y);        //Euclidian 
+       // var d=abs(x-this.pos.x)+abs(y-this.pos.y);      //Manhattan 
+        return d;
     }
+    
 }
