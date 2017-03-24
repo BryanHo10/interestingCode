@@ -1,12 +1,12 @@
 function Particle(x,y,hu){
     
     this.pos=createVector(x,y);
-    this.r=2;
+    this.r=4;
     this.hu=hu;
     colorMode(HSB);
     this.show = function(){
-        stroke(0);
-        fill(0);
+        stroke(255);
+        fill(255);
         ellipse(this.pos.x,this.pos.y,this.r,this.r);
         //createBorder()
     }
