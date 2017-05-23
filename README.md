@@ -2,3 +2,4 @@
 [Daniel Shiffman's Coding Rainbow](https://github.com/CodingRainbow/Rainbow-Code) (++)
 - Fireworks++
 - Voronoi Partition Configuration
+- Interactive Connect Four 
