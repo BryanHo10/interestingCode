@@ -44,13 +44,11 @@ function Bucket(x,y)
     {
                 var placed=false;
                 var navig=floor(this.y/50)*floor(this.x/50)+floor(mouseX/50)-floor(this.x/50);
-            console.log(navig);
                 while(!placed&&navig>=0)
                    {
                         if(this.pieces[navig].user==0)
                             {
-                                console.log(this.first);
-                                this.pieces[navig].changeUser(this.first);
+                             this.pieces[navig].changeUser(this.first);
                                 if(this.first==1)
                                     this.first=2;
                                 else
@@ -58,8 +56,186 @@ function Bucket(x,y)
                                 placed=true;
                             }
                        else
-                           navig-=7;
+                           navig-=this.x/50;
                         
                     }
+        this.checkWin(navig);
+    }
+    this.checkWin=function(location)
+    {
+        if (this.checkHorizontal(location) > 0)
+            {
+                if(this.checkHorizontal(location)==1)
+                    console.log("Blue user won");
+                else
+                    console.log("Red user won");
+                    
+            }
+        if(this.checkVertical(location)>0)
+             {
+                if(this.checkVertical(location)==1)
+                    console.log("Blue user won");
+                else
+                    console.log("Red user won");
+                    
+            }
+        if(this.checkCrossRight(location)>0)
+             {
+                if(this.checkCrossRight(location)==1)
+                    console.log("Blue user won");
+                else
+                    console.log("Red user won");
+                    
+            }
+        if(this.checkCrossLeft(location)>0)
+             {
+                if(this.checkCrossLeft(location)==1)
+                    console.log("Blue user won");
+                else
+                    console.log("Red user won");
+                    
+            }
+        
+    }
+     //Breadth First Search
+    this.checkCrossLeft=function(location)
+    {
+        var count = 8;
+                var matched = 1;
+                while (count < 32 && matched != 4)
+                    {
+                        if(this.pieces[location-count]==null)
+                            break;
+                        else if (this.pieces[location].user == this.pieces [location - (count)].user && (location - count) % 7 != 0 )
+                            {
+                                matched++;
+                            }
+                        else
+                            {
+                                break;
+                            }
+                        count+=8;
+                    }
+                count = 8;
+                while (count < 32 && matched != 4)
+                    {
+                        if(this.pieces[location+ count]==null)
+                            break;
+                        else if (this.pieces[location].user == this.pieces [location + (count)].user && (location + count) % 7 != 6 )
+                            {
+                                matched++;
+                            }
+                        else
+                            {
+                                break;
+                            }
+                        count+=8;
+                    }
+        if (matched == 4)
+            return this.pieces[location].user;
+        else
+            return -1;
+    }
+    this.checkCrossRight=function(location)
+    {
+            
+        var count = 6;
+        var matched = 1;
+        
+        while (count < 24 && matched != 4) 
+                    {
+                        if(this.pieces[location+count]==null)
+                            break;
+                        else if (this.pieces[location].user == this.pieces [location + (count)].user && (location + count) % 7 != 0 )
+                            {
+                                matched++;
+                            }
+                        else
+                            {
+                                break;
+                            }
+                        count+= 6;
+                    }
+        count = 6;
+        while (count < 24 && matched != 4) 
+                    {
+                        if(this.pieces[location-count]==null)
+                            break;
+                        else if (this.pieces[location].user == this.pieces [location - (count)].user && (location - count) % 7 != 6 )
+                            {
+                                matched++;
+                            }
+                        else
+                            {
+                                break;
+                            }
+                        count+= 6;
+                    }
+        if (matched == 4)
+            return this.pieces[location].user;
+        else
+            return -1;
+    }
+    this.checkHorizontal=function(location)
+    {
+                var count = 1;
+                var matched = 1;
+                while (count < 4)
+                    {
+                        if(this.pieces[location+count]==null)
+                            break;
+                        else if (this.pieces[location].user == this.pieces [location + (count)].user && (location + count) % 7 != 0 )
+                            {
+                                matched++;
+                            }
+                        else
+                            {
+                                break;
+                            }
+                        count++;
+                    }
+                count = 1;
+                while (count < 4 && matched != 4)
+                    {
+                        if(this.pieces[location-count]==null)
+                            break;
+                        else if (this.pieces[location].user == this.pieces [location - (count)].user && (location - count) % 7 != 6 )
+                            {
+                                matched++;
+                            }
+                        else
+                            {
+                                break;
+                            }
+                        count++;
+                    }
+        if (matched == 4)
+            return this.pieces[location].user;
+        else
+            return -1;
+        
+    }
+    this.checkVertical=function(location)
+    {
+        var count = 7;
+                var matched = 1;
+                while (count < 28 && matched != 4)
+                    {
+                        if(this.pieces[location+count]==null)
+                            break;
+                        else if (this.pieces[location].user == this.pieces [location + (count)].user)
+                            {
+                                matched++;
+                            }
+                        else
+                            {
+                                break;
+                            }
+                        count+=7;
+                    }
+        if (matched == 4)
+            return this.pieces[location].user;
+        else
+            return -1;  
     }
 }

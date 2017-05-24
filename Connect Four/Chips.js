@@ -1,7 +1,6 @@
 function Chip(x,y,user)
 {
     this.user=0;
-    
     this.hue=100;
     this.x=x;
     this.y=y;
@@ -27,5 +26,5 @@ function Chip(x,y,user)
             this.hue=0;
     }
     
-    
+   
 }

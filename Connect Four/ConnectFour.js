@@ -22,7 +22,7 @@ function draw()
 }
 function mouseClicked()
 {
-  console.log("done");  if(mouseX>=0&&mouseX<=width&&mouseY>=0&&mouseY<=height)
+  if(mouseX>=0&&mouseX<=width&&mouseY>=0&&mouseY<=height)
         game.insertChip();
 }
 function resetGame()
