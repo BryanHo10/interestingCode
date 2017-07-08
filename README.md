@@ -3,3 +3,5 @@
 - Fireworks++
 - Voronoi Partition Configuration
 - Interactive Connect Four 
+- Visual Binary Search Tree
+- A* Pathfinder
